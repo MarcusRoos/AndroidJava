@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dialer">
         <activity android:name=".DialActivity" android:parentActivityName=".MainActivity"
-            android:label="@string/dial">
+            android:label="@string/app_name">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
