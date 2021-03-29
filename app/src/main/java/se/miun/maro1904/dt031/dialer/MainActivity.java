@@ -4,7 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.BulletSpan;
 import android.view.View;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +22,39 @@ public class MainActivity extends AppCompatActivity {
     public void dialButton(View view) {
         Intent myIntent = new Intent(MainActivity.this, DialActivity.class);
         MainActivity.this.startActivity(myIntent);
+    }
+
+    public void calllistButton(View view) {
+        Intent myIntent = new Intent(MainActivity.this, CallListActivity.class);
+        MainActivity.this.startActivity(myIntent);
+    }
+
+    public void settingsButton(View view) {
+        Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
+        MainActivity.this.startActivity(myIntent);
+    }
+
+    public void mapsButton(View view) {
+        Intent myIntent = new Intent(MainActivity.this, MapsActivity.class);
+        MainActivity.this.startActivity(myIntent);
+    }
+
+    public void aboutButton(View view){
+        String aboutMessage = "This app is supposed to mimic the keypad on a phone. " +
+                "The app will consist of activities to: \n\n" + getString(R.string.numbersToDial)
+                + '\n' + getString(R.string.previouslyDialed) + '\n'
+                + getString(R.string.changeSettings)
+                + '\n' + getString(R.string.showOnMap);
+        AlertDialog.Builder aboutBuilder = new AlertDialog.Builder(this);
+        aboutBuilder.setTitle("About");
+        aboutBuilder.setMessage(aboutMessage);
+        aboutBuilder.setCancelable(true);
+        aboutBuilder.setNeutralButton(
+                "OK",
+                (dialog, id) -> dialog.cancel());
+
+        AlertDialog about = aboutBuilder.create();
+        about.show();
     }
 
 }
