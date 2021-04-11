@@ -6,13 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".DialActivity">
 
-    <TextView
-        android:id="@+id/DialActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dial_activity"
+    <se.miun.maro1904.dt031.dialer.DialpadButton
+        android:id="@+id/dialpadbutton1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:textColor="#4689C8"
+        app:layout_constraintBottom_toTopOf="@+id/dialpadbutton2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialpadbutton3"
+        app:message="ABC"
+        app:title="1" />
+
+    <se.miun.maro1904.dt031.dialer.DialpadButton
+        android:id="@+id/dialpadbutton2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:textColor="#4989C2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/dialpadbutton3"
+        app:message="DEF"
+        app:title="2" />
+
+    <se.miun.maro1904.dt031.dialer.DialpadButton
+        android:id="@+id/dialpadbutton3"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:textColor="#5689C8"
+        app:layout_constraintBottom_toTopOf="@+id/dialpadbutton2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:message="GHI"
+        app:title="3" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
