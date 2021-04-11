@@ -4,18 +4,21 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.StyleableRes;
 
 class DialpadButton extends LinearLayout {
     String aTitle;
     String aMessage;
     TextView title;
     TextView message;
+    Paint paint;
+    Canvas canvas;
     public DialpadButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
@@ -23,17 +26,28 @@ class DialpadButton extends LinearLayout {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        inflate(context, R.layout.dialpad_button, this);
+
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs,
                 R.styleable.DialpadButton, 0, 0);
         aTitle = typedArray.getString(R.styleable.DialpadButton_title);
         aMessage = typedArray.getString(R.styleable.DialpadButton_message);
         typedArray.recycle();
+        setOrientation(LinearLayout.VERTICAL);
+        LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.MATCH_PARENT, 80);
+
+        params.gravity = Gravity.CENTER;
+
+
+        paint = new Paint();
+        paint.setARGB(50, 200, 200, 20);
+        paint.setStyle(Paint.Style.FILL);
+
         title = new TextView(context);
-        message = new TextView(context);
-        LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
         title.setLayoutParams(params);
+
+        message = new TextView(context);
         message.setLayoutParams(params);
+
         addView(title);
         addView(message);
     }
@@ -62,6 +76,8 @@ class DialpadButton extends LinearLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         title.setText(aTitle);
+        title.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        message.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         message.setText(aMessage);
     }
 

@@ -10,7 +10,6 @@
         android:id="@+id/dialpadbutton1"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:textColor="#4689C8"
         app:layout_constraintBottom_toTopOf="@+id/dialpadbutton2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -21,9 +20,8 @@
 
     <se.miun.maro1904.dt031.dialer.DialpadButton
         android:id="@+id/dialpadbutton2"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:textColor="#4989C2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -34,8 +32,8 @@
 
     <se.miun.maro1904.dt031.dialer.DialpadButton
         android:id="@+id/dialpadbutton3"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:textColor="#5689C8"
         app:layout_constraintBottom_toTopOf="@+id/dialpadbutton2"
         app:layout_constraintEnd_toEndOf="parent"
