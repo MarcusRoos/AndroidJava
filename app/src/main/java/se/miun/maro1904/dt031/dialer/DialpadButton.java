@@ -47,6 +47,9 @@ class DialpadButton extends LinearLayout {
         message = new TextView(context);
         message.setLayoutParams(params);
 
+        title.setTextColor(Color.RED);
+        message.setTextColor(Color.BLUE);
+
         addView(title);
         addView(message);
     }
