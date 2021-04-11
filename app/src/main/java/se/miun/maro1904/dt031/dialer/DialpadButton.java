@@ -1,27 +1,27 @@
 package se.miun.maro1904.dt031.dialer;
 
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
-
 
 class DialpadButton extends LinearLayout {
+    Context acontext;
     String aTitle;
     String aMessage;
     TextView title;
     TextView message;
-    Paint paint;
     public DialpadButton(Context context, AttributeSet attrs) {
         super(context, attrs);
+        acontext = context;
         init(context, attrs);
         setWillNotDraw(false);
     }
@@ -37,8 +37,6 @@ class DialpadButton extends LinearLayout {
         LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.MATCH_PARENT, 80);
 
         params.gravity = Gravity.CENTER;
-
-
 
 
         title = new TextView(context);
@@ -96,5 +94,23 @@ class DialpadButton extends LinearLayout {
         message.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         message.setText(aMessage);
     }
+
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                title.setTextColor(Color.WHITE);
+                message.setTextColor(Color.WHITE);
+                break;
+            case MotionEvent.ACTION_UP:
+                title.setTextColor(Color.RED);
+                message.setTextColor(Color.BLUE);
+                break;
+        }
+        return true;
+    }
+
 
 }
