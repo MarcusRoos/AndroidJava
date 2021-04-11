@@ -8,13 +8,14 @@
 
     <se.miun.maro1904.dt031.dialer.DialpadButton
         android:id="@+id/dialpadbutton1"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        app:layout_constraintBottom_toTopOf="@+id/dialpadbutton2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dialpadbutton3"
+        app:layout_constraintTop_toTopOf="parent"
         app:message="ABC"
         app:title="1" />
 
@@ -23,21 +24,23 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dialpadbutton3"
+        app:layout_constraintEnd_toEndOf="@+id/dialpadbutton1"
+        app:layout_constraintStart_toStartOf="@+id/dialpadbutton1"
+        app:layout_constraintTop_toBottomOf="@+id/dialpadbutton1"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.5"
         app:message="DEF"
         app:title="2" />
 
     <se.miun.maro1904.dt031.dialer.DialpadButton
         android:id="@+id/dialpadbutton3"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/dialpadbutton2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toTopOf="@+id/dialpadbutton1"
+        app:layout_constraintEnd_toEndOf="@+id/dialpadbutton1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/dialpadbutton1"
         app:layout_constraintTop_toTopOf="parent"
         app:message="GHI"
         app:title="3" />

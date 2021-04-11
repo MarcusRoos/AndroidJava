@@ -11,6 +11,8 @@ import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
 
 class DialpadButton extends LinearLayout {
     String aTitle;
@@ -18,7 +20,6 @@ class DialpadButton extends LinearLayout {
     TextView title;
     TextView message;
     Paint paint;
-    Canvas canvas;
     public DialpadButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
@@ -38,9 +39,7 @@ class DialpadButton extends LinearLayout {
         params.gravity = Gravity.CENTER;
 
 
-        paint = new Paint();
-        paint.setARGB(50, 200, 200, 20);
-        paint.setStyle(Paint.Style.FILL);
+
 
         title = new TextView(context);
         title.setLayoutParams(params);
@@ -63,12 +62,26 @@ class DialpadButton extends LinearLayout {
     }
 
     public void setTitle(String tmp) {
-        aTitle = tmp;
+        if (tmp.length() > 1)
+        {
+            aTitle = tmp.substring(0, 1);
+        }
+        else
+        {
+            aTitle = tmp;
+        }
         requestLayout();
     }
 
     public void setMessage(String tmp) {
-        aMessage = tmp;
+        if (tmp.length() > 4)
+        {
+            aMessage = tmp.substring(0, 4);
+        }
+        else
+        {
+            aMessage = tmp;
+        }
         requestLayout();
     }
 
