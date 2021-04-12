@@ -1,5 +1,6 @@
 package se.miun.maro1904.dt031.dialer;
 
+import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -36,7 +37,6 @@ class DialpadButton extends LinearLayout {
 
         params.gravity = Gravity.CENTER;
 
-
         title = new TextView(context);
         title.setLayoutParams(params);
 
@@ -48,6 +48,8 @@ class DialpadButton extends LinearLayout {
 
         addView(title);
         addView(message);
+
+        this.setOnClickListener(view -> myAnimate());
     }
 
 
@@ -93,16 +95,41 @@ class DialpadButton extends LinearLayout {
         message.setText(aMessage);
     }
 
+    private void myAnimate(){
+        Integer colorFrom = (Color.RED);
+        Integer colorFrom2 = (Color.BLUE);
+        Integer colorTo = (Color.WHITE);
+        Integer colorTo2 = (Color.WHITE);
+        ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
+        ValueAnimator colorAnimation2 = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom2, colorTo2);
+        colorAnimation.addUpdateListener(animator -> title.setTextColor((Integer)animator.getAnimatedValue()));
+        colorAnimation2.addUpdateListener(animator -> message.setTextColor((Integer)animator.getAnimatedValue()));
+        colorAnimation.start();
+        colorAnimation2.start();
+    }
+
+    private void myAnimateUp(){
+        Integer colorFrom = (Color.WHITE);
+        Integer colorTo = (Color.RED);
+        Integer colorTo2 = (Color.BLUE);
+        ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
+        ValueAnimator colorAnimation2 = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo2);
+        colorAnimation.addUpdateListener(animator -> title.setTextColor((Integer)animator.getAnimatedValue()));
+        colorAnimation2.addUpdateListener(animator -> message.setTextColor((Integer)animator.getAnimatedValue()));
+        colorAnimation.start();
+        colorAnimation2.start();
+    }
+
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                title.setTextColor(Color.WHITE);
-                message.setTextColor(Color.WHITE);
+                myAnimate();
                 break;
             case MotionEvent.ACTION_UP:
-                title.setTextColor(Color.RED);
-                message.setTextColor(Color.BLUE);
+                myAnimateUp();
                 break;
         }
         return true;
