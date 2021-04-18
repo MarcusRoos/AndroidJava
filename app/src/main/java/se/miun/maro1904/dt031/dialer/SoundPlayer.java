@@ -18,7 +18,7 @@ import java.util.logging.Handler;
 public class SoundPlayer {
 
     private static SoundPlayer instance;
-    private final SoundPool soundPool;
+    private SoundPool soundPool;
     int ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, POUND, STAR;
 
     @SuppressLint("UseSparseArrays")
@@ -105,6 +105,8 @@ public class SoundPlayer {
     }
 
     public void destroy(){
-
+        soundPool.release();
+        soundPool = null;
+        instance = null;
     }
 }
