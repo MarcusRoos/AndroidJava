@@ -12,13 +12,16 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 class DialpadButton extends LinearLayout {
+    SoundPlayer soundPlayer = SoundPlayer.getInstance(getContext());
     String aTitle;
     String aMessage;
     TextView title;
     TextView message;
+
     public DialpadButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
@@ -121,11 +124,12 @@ class DialpadButton extends LinearLayout {
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                soundPlayer.playSound(this);
                 myAnimate();
                 break;
             case MotionEvent.ACTION_UP:

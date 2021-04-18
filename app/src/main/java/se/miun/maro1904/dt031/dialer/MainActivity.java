@@ -10,9 +10,13 @@ import android.text.style.BulletSpan;
 import android.view.View;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.widget.Toast;
+
+
 
 public class MainActivity extends AppCompatActivity {
-
+    static final String stateDialog = "dialogState";
+    boolean aboutDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,21 +44,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void aboutButton(View view){
-        String aboutMessage = "This app is supposed to mimic the keypad on a phone. " +
-                "The app will consist of activities to: \n\n" + getString(R.string.numbersToDial)
-                + '\n' + getString(R.string.previouslyDialed) + '\n'
-                + getString(R.string.changeSettings)
-                + '\n' + getString(R.string.showOnMap);
-        AlertDialog.Builder aboutBuilder = new AlertDialog.Builder(this);
-        aboutBuilder.setTitle("About");
-        aboutBuilder.setMessage(aboutMessage);
-        aboutBuilder.setCancelable(true);
-        aboutBuilder.setNeutralButton(
-                "OK",
-                (dialog, id) -> dialog.cancel());
+        if (!aboutDialog) {
+            aboutDialog = true;
+            String aboutMessage = "This app is supposed to mimic the keypad on a phone. " +
+                    "The app will consist of activities to: \n\n" + getString(R.string.numbersToDial)
+                    + '\n' + getString(R.string.previouslyDialed) + '\n'
+                    + getString(R.string.changeSettings)
+                    + '\n' + getString(R.string.showOnMap);
+            AlertDialog.Builder aboutBuilder = new AlertDialog.Builder(this);
+            aboutBuilder.setTitle("About");
+            aboutBuilder.setMessage(aboutMessage);
+            aboutBuilder.setCancelable(true);
+            aboutBuilder.setNeutralButton(
+                    "OK",
+                    (dialog, id) -> dialog.cancel());
 
-        AlertDialog about = aboutBuilder.create();
-        about.show();
+            AlertDialog about = aboutBuilder.create();
+            about.show();
+        }
+        else{
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "You've already viewed the about page.",
+                    Toast.LENGTH_SHORT);
+
+            toast.show();
+        }
+
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putBoolean(stateDialog, aboutDialog);
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        aboutDialog = savedInstanceState.getBoolean(stateDialog);
     }
 
 }
