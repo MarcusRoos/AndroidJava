@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DialActivity">
+
+
+    <se.miun.maro1904.dt031.dialer.DialpadButton
+        android:id="@+id/dialpadbutton1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintVertical_bias="0.099"
+        app:layout_constraintEnd_toStartOf="@+id/dialpadbutton2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/dialpadbutton4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:message=""
+        app:title="1" />
+
+    <se.miun.maro1904.dt031.dialer.DialpadButton
+        android:id="@+id/dialpadbutton2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/dialpadbutton5"
+        app:layout_constraintEnd_toStartOf="@+id/dialpadbutton3"
+        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintStart_toEndOf="@+id/dialpadbutton1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.099"
+        app:message="ABC"
+        app:title="2" />
+
+    <se.miun.maro1904.dt031.dialer.DialpadButton
+        android:id="@+id/dialpadbutton3"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintVertical_bias="0.099"
+        app:layout_constraintStart_toEndOf="@+id/dialpadbutton2"
+        app:layout_constraintBottom_toTopOf="@+id/dialpadbutton6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:message="DEF"
+        app:title="3" />
+
+    <se.miun.maro1904.dt031.dialer.DialpadButton
+        android:id="@+id/dialpadbutton4"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintVertical_bias="0.099"
+        app:layout_constraintBottom_toTopOf="@+id/dialpadbutton7"
+        app:layout_constraintEnd_toStartOf="@+id/dialpadbutton5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialpadbutton1"
+        app:message="GHI"
+        app:title="4" />
+
+    <se.miun.maro1904.dt031.dialer.DialpadButton
+        android:id="@+id/dialpadbutton5"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintVertical_bias="0.099"
+        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintBottom_toTopOf="@+id/dialpadbutton8"
+        app:layout_constraintEnd_toStartOf="@+id/dialpadbutton6"
+        app:layout_constraintStart_toEndOf="@+id/dialpadbutton4"
+        app:layout_constraintTop_toBottomOf="@+id/dialpadbutton2"
+        app:message="JKL"
+        app:title="5" />
+
+    <se.miun.maro1904.dt031.dialer.DialpadButton
+        android:id="@+id/dialpadbutton6"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/dialpadbutton9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dialpadbutton5"
+        app:layout_constraintTop_toBottomOf="@+id/dialpadbutton3"
+        app:layout_constraintVertical_bias="0.099"
+        app:message="MNO"
+        app:title="6" />
+
+    <se.miun.maro1904.dt031.dialer.DialpadButton
+        android:id="@+id/dialpadbutton7"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintVertical_bias="0.099"
+        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintTop_toBottomOf="@+id/dialpadbutton4"
+        app:layout_constraintBottom_toTopOf="@+id/dialpadbuttonstar"
+        app:layout_constraintEnd_toStartOf="@+id/dialpadbutton8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:message="PQRS"
+        app:title="7"
+        tools:layout_editor_absoluteY="284dp" />
+
+    <se.miun.maro1904.dt031.dialer.DialpadButton
+        android:id="@+id/dialpadbutton8"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintVertical_bias="0.099"
+        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintTop_toBottomOf="@+id/dialpadbutton5"
+        app:layout_constraintBottom_toTopOf="@+id/dialpadbutton0"
+        app:layout_constraintEnd_toStartOf="@+id/dialpadbutton9"
+        app:layout_constraintStart_toEndOf="@+id/dialpadbutton7"
+        app:message="TUV"
+        app:title="8" />
+
+    <se.miun.maro1904.dt031.dialer.DialpadButton
+        android:id="@+id/dialpadbutton9"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/dialpadbuttonpound"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dialpadbutton8"
+        app:layout_constraintTop_toBottomOf="@+id/dialpadbutton6"
+        app:layout_constraintVertical_bias="0.099"
+        app:message="WXYZ"
+        app:title="9" />
+
+
+
+    <se.miun.maro1904.dt031.dialer.DialpadButton
+        android:id="@+id/dialpadbutton0"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintVertical_bias="0.099"
+        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintTop_toBottomOf="@+id/dialpadbutton8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dialpadbuttonpound"
+        app:layout_constraintStart_toEndOf="@+id/dialpadbuttonstar"
+        app:message=""
+        app:title="0" />
+
+    <se.miun.maro1904.dt031.dialer.DialpadButton
+        android:id="@+id/dialpadbuttonstar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintVertical_bias="0.099"
+        app:layout_constraintEnd_toStartOf="@+id/dialpadbutton0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialpadbutton7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:message=""
+        app:title="\u2733" />
+
+    <se.miun.maro1904.dt031.dialer.DialpadButton
+        android:id="@+id/dialpadbuttonpound"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintVertical_bias="0.099"
+        app:layout_constraintTop_toBottomOf="@+id/dialpadbutton9"
+        app:layout_constraintStart_toEndOf="@+id/dialpadbutton0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:message=""
+        app:title="#"
+        tools:layout_editor_absoluteX="271dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
