@@ -12,7 +12,6 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 class DialpadButton extends LinearLayout {
