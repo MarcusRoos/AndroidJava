@@ -76,6 +76,30 @@ public class SoundPlayer {
             case "3":
                 id = THREE;
                 break;
+            case "4":
+                id = FOUR;
+                break;
+            case "5":
+                id = FIVE;
+                break;
+            case "6":
+                id = SIX;
+                break;
+            case "7":
+                id = SEVEN;
+                break;
+            case "8":
+                id = EIGHT;
+                break;
+            case "9":
+                id = NINE;
+                break;
+            case "\u2733":
+                id = STAR;
+                break;
+            case "#":
+                id = POUND;
+                break;
         }
         soundPool.play(id, 1f, 1f, 1, 0, 1f);
     }
