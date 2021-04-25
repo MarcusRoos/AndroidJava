@@ -2,6 +2,8 @@ package se.miun.maro1904.dt031.dialer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,14 +17,14 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private TextView clicksTextView;
-
+    Intent myIntent;
     List<DialpadButton> buttons = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dial);
-
+        myIntent = new Intent(Intent.ACTION_DIAL);
         delButton = findViewById(R.id.DelButton);
         callButton = findViewById(R.id.CallButton);
         buttons.add(findViewById(R.id.dialpadbutton0));
@@ -65,7 +67,13 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
             return true;
         });
 
-        callButton.setOnClickListener(v13 -> clicksTextView.setText("Call"));
+        callButton.setOnClickListener(newColor -> {
+            String phoneNumber = "tel:" + clicksTextView.getText().toString();
+            Uri number = Uri.parse(phoneNumber);
+            Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
+            startActivity(callIntent);
+        });
+
     }
 
 
