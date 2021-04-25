@@ -69,6 +69,12 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
 
         callButton.setOnClickListener(newColor -> {
             String phoneNumber = "tel:" + clicksTextView.getText().toString();
+
+            if(phoneNumber.contains("#") || phoneNumber.contains("\u2733")){
+                phoneNumber = phoneNumber.replace("#","%23");
+                phoneNumber = phoneNumber.replace("\u2733","*");
+            }
+
             Uri number = Uri.parse(phoneNumber);
             Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
             startActivity(callIntent);
