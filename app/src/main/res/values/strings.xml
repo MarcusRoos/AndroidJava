@@ -31,4 +31,6 @@
     <string name="call_list_activity">Call list activity</string>
     <string name="numberText"></string>
     <string name="string_numbertext" />
+    <string name="call">Call</string>
+    <string name="del">Del</string>
 </resources>

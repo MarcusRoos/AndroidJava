@@ -12,6 +12,7 @@ import android.text.style.BulletSpan;
 import android.view.View;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.File;

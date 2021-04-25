@@ -2,32 +2,29 @@ package se.miun.maro1904.dt031.dialer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class DialActivity extends AppCompatActivity {
-    private DialpadButton button2, button3, button4, button5, button6, button7, button8,
-    button9, buttonStar, buttonPound;
+public class DialActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
+    private Button delButton, callButton;
 
 
-    private TextView clicksTextView; // Display number of clicks on each button
-    private String string = "";
+    private TextView clicksTextView;
 
-    List<DialpadButton> buttons = new ArrayList<DialpadButton>();
-    // To count number of times each button changes color (is clicked)
-    private int button1Clicks;
-    private int button2Clicks;
+    List<DialpadButton> buttons = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dial);
 
+        delButton = findViewById(R.id.DelButton);
+        callButton = findViewById(R.id.CallButton);
         buttons.add(findViewById(R.id.dialpadbutton0));
         buttons.add(findViewById(R.id.dialpadbutton1));
         buttons.add(findViewById(R.id.dialpadbutton2));
@@ -49,12 +46,34 @@ public class DialActivity extends AppCompatActivity {
                 updateClicks(aString);
             });
         }
-
     }
 
     private void updateClicks(String aString) {
-        string += aString;
         clicksTextView.append(aString);
     }
+
+    @Override
+    public void onClick(View v) {
+        delButton.setOnClickListener(v1 -> {
+            String deleteMe = clicksTextView.getText().toString();
+            if (deleteMe.length() > 0) {
+                clicksTextView.setText(deleteMe.substring(0, deleteMe.length() - 1));
+            }
+        });
+        delButton.setOnLongClickListener(v12 -> {
+            clicksTextView.setText("");
+            return true;
+        });
+
+        callButton.setOnClickListener(v13 -> clicksTextView.setText("Call"));
+    }
+
+
+    @Override
+    public boolean onLongClick(View v) {
+        // Required stub
+    return false;
+    }
+
 
 }
