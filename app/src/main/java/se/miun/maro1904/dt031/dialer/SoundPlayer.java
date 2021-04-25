@@ -1,5 +1,6 @@
 package se.miun.maro1904.dt031.dialer;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.AudioAttributes;
@@ -10,6 +11,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -35,6 +37,7 @@ public class SoundPlayer {
     }
 
     public static SoundPlayer getInstance(Context aContext){
+
         if(instance == null){
             instance = new SoundPlayer(aContext);
         }
@@ -43,18 +46,19 @@ public class SoundPlayer {
 
 
     private void loadSounds(Context aContext){
-        ZERO = soundPool.load(aContext, R.raw.zero, 1);
-        ONE = soundPool.load(aContext, R.raw.one, 1);
-        TWO = soundPool.load(aContext, R.raw.two, 1);
-        THREE = soundPool.load(aContext, R.raw.three, 1);
-        FOUR = soundPool.load(aContext, R.raw.four, 1);
-        FIVE = soundPool.load(aContext, R.raw.five, 1);
-        SIX = soundPool.load(aContext, R.raw.six, 1);
-        SEVEN = soundPool.load(aContext, R.raw.seven, 1);
-        EIGHT = soundPool.load(aContext, R.raw.eight, 1);
-        NINE = soundPool.load(aContext, R.raw.nine, 1);
-        STAR = soundPool.load(aContext, R.raw.star, 1);
-        POUND = soundPool.load(aContext, R.raw.pound, 1);
+        String file = aContext.getFilesDir().getPath() + "/voices/mamacita_us/";
+        ZERO = soundPool.load(file + "zero.mp3", 1);
+        ONE = soundPool.load(file + "one.mp3", 1);
+        TWO = soundPool.load(file + "two.mp3", 1);
+        THREE = soundPool.load(file + "three.mp3", 1);
+        FOUR = soundPool.load(file + "four.mp3", 1);
+        FIVE = soundPool.load(file + "five.mp3", 1);
+        SIX = soundPool.load(file + "six.mp3", 1);
+        SEVEN = soundPool.load(file + "seven.mp3", 1);
+        EIGHT = soundPool.load(file + "eight.mp3", 1);
+        NINE = soundPool.load(file + "nine.mp3", 1);
+        STAR = soundPool.load(file + "star.mp3", 1);
+        POUND = soundPool.load(file + "pound.mp3", 1);
     }
 
 

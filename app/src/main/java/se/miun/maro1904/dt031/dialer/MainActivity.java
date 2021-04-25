@@ -1,7 +1,9 @@
 package se.miun.maro1904.dt031.dialer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -11,15 +13,17 @@ import android.view.View;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.widget.Toast;
-
+import java.io.File;
 
 
 public class MainActivity extends AppCompatActivity {
     static final String stateDialog = "dialogState";
     boolean aboutDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Util.copyDefaultVoiceToInternalStorage(this);
         setContentView(R.layout.activity_main);
     }
 

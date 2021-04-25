@@ -92,6 +92,10 @@ public class Util {
         return getVoiceDir(context, DEFAULT_VOICE);
     }
 
+    public static File getAbsoluteVoice(Context context) {
+        return getVoiceDir(context, DEFAULT_VOICE + DEFAULT_VOICE_EXTENSION);
+    }
+
     /**
      * Copies each resource in <code>DEFAULT_VOICE_RESOURCE_IDS</code> to the directory returned
      * by <code>getDefaultVoiceDir</code>.
