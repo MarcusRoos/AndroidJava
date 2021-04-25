@@ -12,6 +12,7 @@ import android.text.style.BulletSpan;
 import android.view.View;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.io.File;
 
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         Util.copyDefaultVoiceToInternalStorage(this);
         setContentView(R.layout.activity_main);
     }
+
 
     public void dialButton(View view) {
         Intent myIntent = new Intent(MainActivity.this, DialActivity.class);

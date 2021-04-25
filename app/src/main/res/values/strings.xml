@@ -29,5 +29,6 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="title_activity_maps">Map</string>
     <string name="call_list_activity">Call list activity</string>
-    <string name="numberText">numberText</string>
+    <string name="numberText"></string>
+    <string name="string_numbertext" />
 </resources>

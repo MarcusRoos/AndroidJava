@@ -10,21 +10,41 @@ import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.StringRes;
+
+import javax.security.auth.callback.Callback;
 
 
-class DialpadButton extends LinearLayout {
+class DialpadButton extends LinearLayout{
     SoundPlayer soundPlayer = SoundPlayer.getInstance(getContext());
     String aTitle;
     String aMessage;
     TextView title;
     TextView message;
+    Context myCont;
+
+    public interface OnClickedListener {
+        void onClick(DialpadButton me);
+    }
+
+    private DialpadButton.OnClickedListener listener;
+
+    public void setOnClickedListener(OnClickedListener listener) {
+        this.listener = listener;
+    }
+
 
     public DialpadButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
+        myCont = context;
         setWillNotDraw(false);
+
     }
 
     private void init(Context context, AttributeSet attrs) {
@@ -55,6 +75,12 @@ class DialpadButton extends LinearLayout {
     }
 
 
+
+
+
+ //   Toast toast = Toast.makeText(myCont, "text", Toast.LENGTH_LONG);
+  //      toast.show();
+
     public String getTitle() {
         return aTitle;
     }
@@ -65,6 +91,7 @@ class DialpadButton extends LinearLayout {
     }
 
     public void setTitle(String tmp) {
+
         if (tmp.length() > 1)
         {
             aTitle = tmp.substring(0, 1);
@@ -74,6 +101,9 @@ class DialpadButton extends LinearLayout {
             aTitle = tmp;
         }
         requestLayout();
+        if (listener != null) {
+            listener.onClick(this);
+        }
     }
 
     public void setMessage(String tmp) {
@@ -95,6 +125,7 @@ class DialpadButton extends LinearLayout {
         title.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         message.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         message.setText(aMessage);
+
     }
 
     private void myAnimate(){
@@ -122,13 +153,13 @@ class DialpadButton extends LinearLayout {
         colorAnimation2.start();
     }
 
-
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 soundPlayer.playSound(this);
+                listener.onClick(this);
                 myAnimate();
                 break;
             case MotionEvent.ACTION_UP:
