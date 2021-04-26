@@ -135,5 +135,10 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
     return false;
     }
 
+    public void tester(){
+        Toast toast = Toast.makeText(this,"Hello Javatpoint",Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
 
 }
