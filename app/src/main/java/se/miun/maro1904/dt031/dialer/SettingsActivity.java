@@ -3,15 +3,12 @@ package se.miun.maro1904.dt031.dialer;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
 
 public class SettingsActivity extends AppCompatActivity {
-    DialActivity dialActivity = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +35,6 @@ public class SettingsActivity extends AppCompatActivity {
             Preference pref = findPreference(getString(R.string.deleteStored));
             pref.setOnPreferenceClickListener(preference -> clickMe());
 
-            //     SharedPreferences.Editor preferencesEditor = sharedPreferences.edit();
-            //     preferencesEditor.clear();
-            //      preferencesEditor.apply();
         }
 
         private boolean clickMe() {
