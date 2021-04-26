@@ -1,7 +1,9 @@
 package se.miun.maro1904.dt031.dialer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,7 +28,8 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor myEdit;
-
+    SharedPreferences prefStatus;
+    boolean switchPrefValue;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
@@ -46,6 +49,7 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
+    @SuppressLint("CommitPrefEdits")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,12 +73,19 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
         buttons.add(findViewById(R.id.dialpadbuttonpound));
         clicksTextView = findViewById(R.id.numberArea);
 
+        // Fetch boolean value of save number settings
+        prefStatus = PreferenceManager.getDefaultSharedPreferences(this);
+        switchPrefValue = prefStatus.getBoolean("saveNumber", false);
+
         for (int i=0; i<buttons.size(); i++) {
             buttons.get(i).setOnClickedListener(me -> {
                 String aString = me.getTitle();
                 updateClicks(aString);
             });
         }
+   //     SharedPreferences.Editor preferencesEditor = sharedPreferences.edit();
+   //     preferencesEditor.clear();
+  //      preferencesEditor.apply();
     }
 
 
@@ -96,17 +107,19 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         callButton.setOnClickListener(newColor -> {
+            if (switchPrefValue){
+                String a = clicksTextView.getText().toString();
+                String s1 = sharedPreferences.getString("name", "");
+                a += "\n" + s1;
+                myEdit.putString("name", a);
+                myEdit.apply();
+            }
             String phoneNumber = "tel:" + clicksTextView.getText().toString();
-            String a = clicksTextView.getText().toString();
-            String s1 = sharedPreferences.getString("name", "");
-            a += "\n" + s1;
-            myEdit.putString("name", a);
-            myEdit.apply();
+
             if(phoneNumber.contains("#") || phoneNumber.contains("\u2733")){
                 phoneNumber = phoneNumber.replace("#","%23");
                 phoneNumber = phoneNumber.replace("\u2733","*");
             }
-
 
             Uri number = Uri.parse(phoneNumber);
             Intent callIntent = new Intent(Intent.ACTION_DIAL, number);

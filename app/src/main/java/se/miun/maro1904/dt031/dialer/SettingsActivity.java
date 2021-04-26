@@ -6,8 +6,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
-
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -32,16 +30,8 @@ public class SettingsActivity extends AppCompatActivity {
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
 
+
         }
-
-        public static boolean shouldStoreNumbers(Context context) {
-            SharedPreferences sharedPreferences = PreferenceManager.
-                    getDefaultSharedPreferences(context);
-            return sharedPreferences.getBoolean(
-                    context.getString(R.string.changeSettings), true);
-        }
-
-
     }
 
 
