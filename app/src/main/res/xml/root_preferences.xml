@@ -10,7 +10,7 @@
 
     <Preference
         app:title="@string/delete_numbers"
-        app:key="deleteStored"
+        app:key="@string/deleteStored"
         app:summary="@string/delete_numbers_summary"
         app:useSimpleSummaryProvider="true"
         app:icon="@drawable/delete_clip"

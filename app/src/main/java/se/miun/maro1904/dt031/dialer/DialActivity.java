@@ -2,6 +2,7 @@ package se.miun.maro1904.dt031.dialer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +69,6 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
         buttons.add(findViewById(R.id.dialpadbuttonpound));
         clicksTextView = findViewById(R.id.numberArea);
 
-
         for (int i=0; i<buttons.size(); i++) {
             buttons.get(i).setOnClickedListener(me -> {
                 String aString = me.getTitle();
@@ -95,9 +96,6 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         callButton.setOnClickListener(newColor -> {
-            myEdit.remove("name");
-            myEdit.remove("MySharedPref");
-            myEdit.apply();
             String phoneNumber = "tel:" + clicksTextView.getText().toString();
             String a = clicksTextView.getText().toString();
             String s1 = sharedPreferences.getString("name", "");

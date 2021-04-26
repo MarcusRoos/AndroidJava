@@ -35,4 +35,5 @@
     <string name="string_numbertext" />
     <string name="call"></string>
     <string name="del"></string>
+    <string name="deleteStored">deleteStored</string>
 </resources>

@@ -78,8 +78,7 @@ class DialpadButton extends LinearLayout{
 
 
 
- //   Toast toast = Toast.makeText(myCont, "text", Toast.LENGTH_LONG);
-  //      toast.show();
+
 
     public String getTitle() {
         return aTitle;
