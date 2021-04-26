@@ -95,6 +95,9 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         callButton.setOnClickListener(newColor -> {
+            myEdit.remove("name");
+            myEdit.remove("MySharedPref");
+            myEdit.apply();
             String phoneNumber = "tel:" + clicksTextView.getText().toString();
             String a = clicksTextView.getText().toString();
             String s1 = sharedPreferences.getString("name", "");

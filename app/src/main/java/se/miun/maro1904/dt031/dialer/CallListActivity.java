@@ -15,11 +15,16 @@ public class CallListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_call_list);
         SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         textView = findViewById(R.id.CalllistActivity);
-
-        String a = textView.getText().toString();
-        String s1 = sh.getString("name", "");
-        a += "\n" + s1;
-        textView.append(a);
+        String value = sh.getString("name", null);
+        if (value == null){
+            textView.setText("No numbers exist");
+        }
+        else {
+            String a = textView.getText().toString();
+            String s1 = sh.getString("name", "");
+            a += "\n" + s1;
+            textView.append(a);
+        }
     }
 
 
