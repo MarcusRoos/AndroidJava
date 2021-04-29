@@ -39,6 +39,12 @@ class DialpadButton extends LinearLayout{
     }
 
 
+    public DialpadButton(Context context) {
+        super(context);
+        myCont = context;
+        setWillNotDraw(false);
+    }
+
     public DialpadButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
