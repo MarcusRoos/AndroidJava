@@ -25,7 +25,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Util.copyDefaultVoiceToInternalStorage(this);
+        boolean loadFiles = false;
+        try {
+            loadFiles = Util.defaultVoiceExist(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (!loadFiles){
+            Util.copyDefaultVoiceToInternalStorage(this);
+        }
         setContentView(R.layout.activity_main);
     }
 

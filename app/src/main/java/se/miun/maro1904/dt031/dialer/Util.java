@@ -1,11 +1,18 @@
 package se.miun.maro1904.dt031.dialer;
 
 import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -142,7 +149,18 @@ public class Util {
      * @return true if the default voice exists in internal app-specific storage, false if not.
      */
     public static boolean defaultVoiceExist(Context context) {
-		// TODO: Add check if default voice dir already exist in the internal app storage
-        return false;
+        boolean existsOrNot = true;
+        File file = new File(context.getFilesDir().getAbsolutePath() + "/" + VOICE_DIR + "/" + DEFAULT_VOICE + "/");
+        for (String test : DEFAULT_VOICE_FILE_NAMES.values()){
+            File tester = new File(file + "/" + test);
+            if(tester.exists()){
+                existsOrNot = true;
+            }
+            else{
+                existsOrNot = false;
+                break;
+            }
+        }
+        return existsOrNot;
     }
 }
