@@ -58,6 +58,11 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.this.startActivity(myIntent);
     }
 
+    public void downloadButton(View view) {
+        Intent myIntent = new Intent(MainActivity.this, DownloadActivity.class);
+        MainActivity.this.startActivity(myIntent);
+    }
+
     public void aboutButton(View view){
         if (!aboutDialog) {
             aboutDialog = true;

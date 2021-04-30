@@ -39,4 +39,5 @@
     <string name="denied">Permission has been denied</string>
     <string name="deleteStored">deleteStored</string>
     <string name="saveNumbers">saveNumbers</string>
+    <string name="downloadText">DOWNLOAD VOICES</string>
 </resources>
