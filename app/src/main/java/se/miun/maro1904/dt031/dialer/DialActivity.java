@@ -1,11 +1,14 @@
 package se.miun.maro1904.dt031.dialer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.preference.PreferenceManager;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -114,12 +117,23 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
                 phoneNumber = phoneNumber.replace("#","%23");
                 phoneNumber = phoneNumber.replace("\u2733","*");
             }
-
             Uri number = Uri.parse(phoneNumber);
-            Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
-            startActivity(callIntent);
+            if( isCallPhonePermissionGranted() ){
+                Intent callIntent = new Intent(Intent.ACTION_CALL, number);
+                startActivity(callIntent);
+            } else {
+                Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
+                startActivity(callIntent);
+            }
+
+
         });
 
+    }
+
+    private boolean isCallPhonePermissionGranted() {
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
+                == PackageManager.PERMISSION_GRANTED;
     }
 
 
