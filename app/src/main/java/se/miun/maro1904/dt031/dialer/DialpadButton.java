@@ -21,12 +21,12 @@ import javax.security.auth.callback.Callback;
 
 
 class DialpadButton extends LinearLayout{
-    SoundPlayer soundPlayer = SoundPlayer.getInstance(getContext());
     String aTitle;
     String aMessage;
     TextView title;
     TextView message;
     Context myCont;
+    SoundPlayer soundPlayer = SoundPlayer.getInstance(getContext());
 
     public interface OnClickedListener {
         void onClick(DialpadButton me);
@@ -79,12 +79,6 @@ class DialpadButton extends LinearLayout{
 
         this.setOnClickListener(view -> myAnimate());
     }
-
-
-
-
-
-
 
     public String getTitle() {
         return aTitle;

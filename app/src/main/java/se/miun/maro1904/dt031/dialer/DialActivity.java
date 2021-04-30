@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -25,7 +24,6 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
     private TextView clicksTextView;
     Intent myIntent;
     List<DialpadButton> buttons = new ArrayList<>();
-
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor myEdit;
     SharedPreferences prefStatus;
@@ -52,6 +50,7 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
     @SuppressLint("CommitPrefEdits")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SoundPlayer soundPlayer = SoundPlayer.getInstance(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dial);
         sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
@@ -83,9 +82,6 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
                 updateClicks(aString);
             });
         }
-   //     SharedPreferences.Editor preferencesEditor = sharedPreferences.edit();
-   //     preferencesEditor.clear();
-  //      preferencesEditor.apply();
     }
 
 
@@ -136,7 +132,7 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void tester(){
-        Toast toast = Toast.makeText(this,"Hello Javatpoint",Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(this,"Tester",Toast.LENGTH_SHORT);
         toast.show();
     }
 

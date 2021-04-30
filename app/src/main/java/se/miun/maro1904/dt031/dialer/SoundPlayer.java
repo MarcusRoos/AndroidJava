@@ -1,21 +1,9 @@
 package se.miun.maro1904.dt031.dialer;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.AudioAttributes;
-import android.media.AudioManager;
 import android.media.SoundPool;
-import android.os.Build;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.widget.Toast;
-
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
-import java.util.logging.Handler;
 
 public class SoundPlayer {
 
