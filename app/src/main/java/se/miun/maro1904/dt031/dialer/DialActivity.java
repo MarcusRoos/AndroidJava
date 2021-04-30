@@ -1,11 +1,16 @@
 package se.miun.maro1904.dt031.dialer;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -31,6 +36,8 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
     SharedPreferences.Editor myEdit;
     SharedPreferences prefStatus;
     boolean switchPrefValue;
+    private static final int REQUEST_CALL_PHONE_PERMISSION  =  100;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
@@ -111,24 +118,24 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
                 myEdit.putString("name", a);
                 myEdit.apply();
             }
-            String phoneNumber = "tel:" + clicksTextView.getText().toString();
-
-            if(phoneNumber.contains("#") || phoneNumber.contains("\u2733")){
-                phoneNumber = phoneNumber.replace("#","%23");
-                phoneNumber = phoneNumber.replace("\u2733","*");
-            }
-            Uri number = Uri.parse(phoneNumber);
-            if( isCallPhonePermissionGranted() ){
-                Intent callIntent = new Intent(Intent.ACTION_CALL, number);
-                startActivity(callIntent);
+            if (isCallPhonePermissionGranted()) {
+                calling();
             } else {
-                Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
-                startActivity(callIntent);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
             }
-
-
         });
+    }
 
+    private void calling(){
+        String phoneNumber = "tel:" + clicksTextView.getText().toString();
+        if(phoneNumber.contains("#") || phoneNumber.contains("\u2733")){
+            phoneNumber = phoneNumber.replace("#","%23");
+            phoneNumber = phoneNumber.replace("\u2733","*");
+        }
+        Uri number = Uri.parse(phoneNumber);
+        Intent callIntent = new Intent(Intent.ACTION_CALL, number);
+        callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(callIntent);
     }
 
     private boolean isCallPhonePermissionGranted() {
@@ -136,6 +143,18 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
                 == PackageManager.PERMISSION_GRANTED;
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 1) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getApplicationContext(), R.string.granted, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), R.string.denied, Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
     @Override
     public boolean onLongClick(View v) {
@@ -144,9 +163,9 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void tester(){
+        // Don't want to extract this string, solely for testing purposes, will delete at last assignment
         Toast toast = Toast.makeText(this,"Tester",Toast.LENGTH_SHORT);
         toast.show();
     }
-
 
 }

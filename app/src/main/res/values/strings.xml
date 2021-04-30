@@ -35,6 +35,8 @@
     <string name="string_numbertext" />
     <string name="call"></string>
     <string name="del"></string>
+    <string name="granted">Permission has been granted</string>
+    <string name="denied">Permission has been denied</string>
     <string name="deleteStored">deleteStored</string>
     <string name="saveNumbers">saveNumbers</string>
 </resources>
