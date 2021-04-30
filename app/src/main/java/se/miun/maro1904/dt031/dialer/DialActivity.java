@@ -1,18 +1,12 @@
 package se.miun.maro1904.dt031.dialer;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -30,6 +24,7 @@ import java.util.List;
 
 
 public class DialActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
+    SoundPlayer soundPlayer;
     private Button delButton, callButton;
     private TextView clicksTextView;
     Intent myIntent;
@@ -80,7 +75,7 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
         buttons.add(findViewById(R.id.dialpadbuttonstar));
         buttons.add(findViewById(R.id.dialpadbuttonpound));
         clicksTextView = findViewById(R.id.numberArea);
-
+        soundPlayer = SoundPlayer.getInstance(this);
         // Fetch boolean value of save number settings
         prefStatus = PreferenceManager.getDefaultSharedPreferences(this);
         switchPrefValue = prefStatus.getBoolean("saveNumber", false);
@@ -176,6 +171,12 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
         // Don't want to extract this string, solely for testing purposes, will delete at last assignment
         Toast toast = Toast.makeText(this,"Tester",Toast.LENGTH_SHORT);
         toast.show();
+    }
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        soundPlayer.destroy();
     }
 
 }
