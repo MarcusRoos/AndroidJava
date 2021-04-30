@@ -5,12 +5,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -36,7 +38,6 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
     SharedPreferences.Editor myEdit;
     SharedPreferences prefStatus;
     boolean switchPrefValue;
-    private static final int REQUEST_CALL_PHONE_PERMISSION  =  100;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -133,9 +134,16 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
             phoneNumber = phoneNumber.replace("\u2733","*");
         }
         Uri number = Uri.parse(phoneNumber);
-        Intent callIntent = new Intent(Intent.ACTION_CALL, number);
+        Intent callIntent;
+        if (isCallPhonePermissionGranted()) {
+            callIntent = new Intent(Intent.ACTION_CALL, number);
+        }
+        else{
+            callIntent = new Intent(Intent.ACTION_DIAL, number);
+        }
         callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(callIntent);
+
     }
 
     private boolean isCallPhonePermissionGranted() {
@@ -153,8 +161,10 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
             } else {
                 Toast.makeText(getApplicationContext(), R.string.denied, Toast.LENGTH_SHORT).show();
             }
+            calling();
         }
     }
+
 
     @Override
     public boolean onLongClick(View v) {
