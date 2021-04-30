@@ -45,12 +45,10 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
-
     @SuppressLint("CommitPrefEdits")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SoundPlayer soundPlayer = SoundPlayer.getInstance(this);
+        SoundPlayer.getInstance(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dial);
         sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
@@ -102,7 +100,7 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
             return true;
         });
 
-        callButton.setOnClickListener(newColor -> {
+        callButton.setOnClickListener(callClicker -> {
             if (switchPrefValue){
                 String a = clicksTextView.getText().toString();
                 String s1 = sharedPreferences.getString("name", "");
