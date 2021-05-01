@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -167,9 +168,10 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
     return false;
     }
 
-    public void tester(){
+    public void tester(String passMe){
         // Don't want to extract this string, solely for testing purposes, will delete at last assignment
-        Toast toast = Toast.makeText(this,"Tester",Toast.LENGTH_SHORT);
+
+        Toast toast = Toast.makeText(this,passMe,Toast.LENGTH_SHORT);
         toast.show();
     }
 
@@ -179,4 +181,8 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
         soundPlayer.destroy();
     }
 
+    public void downloadButton(MenuItem item) {
+        Intent myIntent = new Intent(this, DownloadActivity.class);
+        this.startActivity(myIntent);
+    }
 }

@@ -9,4 +9,12 @@
         android:id="@+id/settingsbutton"
         android:title="@string/settings"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/downloadmenu"
+        android:title="@string/downloadMenu"
+        app:showAsAction="ifRoom"
+        android:onClick="downloadButton"
+        />
+
 </menu>

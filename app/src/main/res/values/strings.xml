@@ -40,4 +40,5 @@
     <string name="deleteStored">deleteStored</string>
     <string name="saveNumbers">saveNumbers</string>
     <string name="downloadText">DOWNLOAD VOICES</string>
+    <string name="downloadMenu">DOWNLOAD VOICES</string>
 </resources>
