@@ -23,6 +23,7 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+@SuppressWarnings("deprecation")
 public class DownloadActivity extends AppCompatActivity {
     private static final String TAG = "DownloadActivity";
     private String webPage = "";

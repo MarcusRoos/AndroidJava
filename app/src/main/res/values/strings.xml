@@ -45,4 +45,13 @@
     <string name="decompressing">Decompressing...</string>
     <string name="settings_sound_summary">Settings sound summary</string>
     <string name="settings_sound_title">Settings sound title</string>
+    <string name="remind_me">Remind me to take a break</string>
+
+    <string-array name="default_pref">
+        <item>EMPTY</item>
+    </string-array>
+
+    <string-array name="default_list">
+        <item>EMPTY</item>
+    </string-array>
 </resources>

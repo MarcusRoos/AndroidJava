@@ -18,8 +18,12 @@
         />
 
     <ListPreference
-        app:title="@string/settings_sound_title"
+        app:defaultValue="1"
+        app:dialogTitle="@string/settings_sound_title"
+        app:entries="@array/default_pref"
+        app:entryValues="@array/default_list"
+        app:key="voiceList"
         app:summary="@string/settings_sound_summary"
-        app:key="changeVoices" />
+        app:title="@string/settings_sound_title" />
 
 </PreferenceScreen>
