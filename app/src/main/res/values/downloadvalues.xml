@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="voicesLink">https://dt031g.programvaruteknik.nu/dialer/voices/</string>
+    <string name="extractDirectory">/data/data/se.miun.maro1904.dt031.dialer/files/voices/</string>
+</resources>

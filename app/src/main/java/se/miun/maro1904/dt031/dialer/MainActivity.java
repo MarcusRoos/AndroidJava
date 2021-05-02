@@ -59,8 +59,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void downloadButton(View view) {
-        Intent myIntent = new Intent(MainActivity.this, DownloadActivity.class);
-        MainActivity.this.startActivity(myIntent);
+        Intent intent = new Intent(this, DownloadActivity.class);
+        intent.putExtra("url", getResources().getString(R.string.voicesLink));
+        intent.putExtra("destination", getResources().getString(R.string.extractDirectory));
+        startActivity(intent);
     }
 
     public void aboutButton(View view){

@@ -41,4 +41,6 @@
     <string name="saveNumbers">saveNumbers</string>
     <string name="downloadText">DOWNLOAD VOICES</string>
     <string name="downloadMenu">DOWNLOAD VOICES</string>
+    <string name="downloadingProgress">Downloading voices...</string>
+    <string name="decompressing">Decompressing...</string>
 </resources>
