@@ -9,7 +9,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 public class SettingsActivity extends AppCompatActivity {
-    private final String soundPath = getResources().getString(R.string.extractDirectory);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +24,6 @@ public class SettingsActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
-
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
@@ -40,7 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         private boolean clickMe() {
             SharedPreferences preferences = this.getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-            preferences.edit().clear().commit();
+            preferences.edit().clear().apply();
             return true;
         }
 
