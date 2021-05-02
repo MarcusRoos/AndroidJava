@@ -43,4 +43,6 @@
     <string name="downloadMenu">DOWNLOAD VOICES</string>
     <string name="downloadingProgress">Downloading voices...</string>
     <string name="decompressing">Decompressing...</string>
+    <string name="settings_sound_summary">Settings sound summary</string>
+    <string name="settings_sound_title">Settings sound title</string>
 </resources>

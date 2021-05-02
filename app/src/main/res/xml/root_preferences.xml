@@ -17,4 +17,9 @@
         app:icon="@drawable/delete_clip"
         />
 
+    <ListPreference
+        app:title="@string/settings_sound_title"
+        app:summary="@string/settings_sound_summary"
+        app:key="changeVoices" />
+
 </PreferenceScreen>

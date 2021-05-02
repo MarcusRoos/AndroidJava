@@ -28,6 +28,7 @@ public class DownloadActivity extends AppCompatActivity {
     private String webPage = "";
     private String destination = "";
     private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,10 +69,11 @@ public class DownloadActivity extends AppCompatActivity {
         private final ProgressDialog progressDialog = new ProgressDialog(DownloadActivity.this);
         private String filePath = "";
 
+        // Inspiration taken from https://abhiandroid.com/programming/asynctask
         @Override
         protected void onPreExecute() {
             progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            progressDialog.setMessage(getString(R.string.store_number));
+            progressDialog.setMessage(getString(R.string.downloadingProgress));
             progressDialog.setCancelable(false);
             progressDialog.setMax(100);
             progressDialog.setProgress(0);
