@@ -168,8 +168,8 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onRestart() {
-        super.onRestart();
+    public void onStop() {
+        super.onStop();
         soundPlayer.destroy();
     }
 

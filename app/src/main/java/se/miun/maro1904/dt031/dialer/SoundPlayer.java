@@ -44,11 +44,7 @@ public class SoundPlayer {
         SharedPreferences settings =
                 PreferenceManager.getDefaultSharedPreferences(aContext);
         String test = settings.getString("voiceList", "");
-        Toast toast = Toast.makeText(aContext,test,Toast.LENGTH_SHORT);
-        toast.show();
-//        ListPreference voicePref = findPreference("voiceList");
-//        Preference testPref = getSharedPreference("testPref");
-//        testPref.setTitle(voicePref.getValue());
+
         String file = aContext.getFilesDir().getPath() + "/voices/" + test + "/";
         ZERO = soundPool.load(file + "zero.mp3", 1);
         ONE = soundPool.load(file + "one.mp3", 1);
