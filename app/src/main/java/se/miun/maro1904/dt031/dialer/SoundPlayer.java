@@ -2,11 +2,17 @@ package se.miun.maro1904.dt031.dialer;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
+import android.preference.PreferenceManager;
+import android.widget.Toast;
+
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
 
 public class SoundPlayer {
-
+    SharedPreferences preferences;
     private static SoundPlayer instance;
     private SoundPool soundPool;
     int ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, POUND, STAR;
@@ -22,6 +28,7 @@ public class SoundPlayer {
                 .build();
 
         loadSounds(aContext);
+        preferences = PreferenceManager.getDefaultSharedPreferences(aContext);
     }
 
     public static SoundPlayer getInstance(Context aContext){
@@ -34,7 +41,15 @@ public class SoundPlayer {
 
 
     private void loadSounds(Context aContext){
-        String file = aContext.getFilesDir().getPath() + "/voices/mamacita_us/";
+        SharedPreferences settings =
+                PreferenceManager.getDefaultSharedPreferences(aContext);
+        String test = settings.getString("voiceList", "");
+        Toast toast = Toast.makeText(aContext,test,Toast.LENGTH_SHORT);
+        toast.show();
+//        ListPreference voicePref = findPreference("voiceList");
+//        Preference testPref = getSharedPreference("testPref");
+//        testPref.setTitle(voicePref.getValue());
+        String file = aContext.getFilesDir().getPath() + "/voices/" + test + "/";
         ZERO = soundPool.load(file + "zero.mp3", 1);
         ONE = soundPool.load(file + "one.mp3", 1);
         TWO = soundPool.load(file + "two.mp3", 1);

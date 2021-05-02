@@ -26,4 +26,12 @@
         app:summary="@string/settings_sound_summary"
         app:title="@string/settings_sound_title" />
 
+    <Preference
+        app:title="TestPref"
+        app:key="testPref"
+        app:summary="@string/delete_numbers_summary"
+        app:useSimpleSummaryProvider="true"
+
+        />
+
 </PreferenceScreen>
