@@ -1,11 +1,8 @@
 package se.miun.maro1904.dt031.dialer;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Environment;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +11,6 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class SettingsActivity extends AppCompatActivity {
     @Override
@@ -47,14 +43,21 @@ public class SettingsActivity extends AppCompatActivity {
             }
 
             ListPreference voicePref = findPreference("voiceList");
+
             voicePref.setEntries(names); // what is displayed
             voicePref.setEntryValues(names); // what is stored
-
+            if (voicePref.getSummary() != voicePref.getValue()) {
+                voicePref.setSummary(voicePref.getValue());
+            }
         }
 
 
         private boolean clickMe() {
             SharedPreferences preferences = this.getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+            ListPreference voicePref = findPreference("voiceList");
+            if (voicePref.getSummary() != voicePref.getValue()) {
+                voicePref.setSummary(voicePref.getValue());
+            }
             preferences.edit().clear().apply();
             return true;
         }

@@ -18,20 +18,14 @@
         />
 
     <ListPreference
-        app:defaultValue="1"
-        app:dialogTitle="@string/settings_sound_title"
+        app:defaultValue="mamacita_us"
+        app:dialogTitle="@string/soundTitle"
         app:entries="@array/default_pref"
         app:entryValues="@array/default_list"
         app:key="voiceList"
-        app:summary="@string/settings_sound_summary"
-        app:title="@string/settings_sound_title" />
+        app:summary="@string/soundSummary"
+        app:title="@string/soundTitle"
+        app:icon="@drawable/voiceicon"/>
 
-    <Preference
-        app:title="TestPref"
-        app:key="testPref"
-        app:summary="@string/delete_numbers_summary"
-        app:useSimpleSummaryProvider="true"
-
-        />
 
 </PreferenceScreen>
