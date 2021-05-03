@@ -153,13 +153,13 @@ public class DownloadActivity extends AppCompatActivity {
                 progressDialog.dismiss();
             }
             if (!filePath.equals("") && !destination.equals("")) {
-                new DecompressTask().execute(filePath, destination);
+                new unZipping().execute(filePath, destination);
             }
         }
     }
 
     @SuppressLint("StaticFieldLeak")
-    private class DecompressTask extends AsyncTask<String, Void, Void> {
+    private class unZipping extends AsyncTask<String, Void, Void> {
         private ProgressDialog progressDialog = new ProgressDialog(DownloadActivity.this);
 
         @Override
@@ -173,7 +173,7 @@ public class DownloadActivity extends AppCompatActivity {
         protected Void doInBackground(String... params) {
             String filePath = params[0];
             String directoryPathToUnzip = params[1];
-            decompress(filePath, directoryPathToUnzip);
+            unZip(filePath, directoryPathToUnzip);
             return null;
         }
 
@@ -197,7 +197,7 @@ public class DownloadActivity extends AppCompatActivity {
     }
 
     //unZip file from Util.java
-    public static boolean decompress(String sourceFile, String destinationDir) {
+    public static boolean unZip(String sourceFile, String destinationDir) {
         try {
 
             ZipFile zipFile = new ZipFile(sourceFile);

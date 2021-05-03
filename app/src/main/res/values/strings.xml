@@ -42,7 +42,7 @@
     <string name="downloadText">DOWNLOAD VOICES</string>
     <string name="downloadMenu">DOWNLOAD VOICES</string>
     <string name="downloadingProgress">Downloading voices...</string>
-    <string name="decompressing">Decompressing...</string>
+    <string name="decompressing">Unzipping...</string>
     <string name="soundSummary">Settings sound summary</string>
     <string name="soundTitle">Voice</string>
     <string name="remind_me">Remind me to take a break</string>

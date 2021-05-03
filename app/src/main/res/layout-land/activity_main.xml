@@ -8,22 +8,23 @@
 
     <Button
         android:id="@+id/aboutbutton"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="55dp"
         android:onClick="aboutButton"
         android:text="@string/about"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/greetingsign"
+        app:layout_constraintStart_toEndOf="@+id/downloadbutton"
         app:layout_constraintTop_toBottomOf="@+id/mapbutton" />
 
     <Button
         android:id="@+id/mapbutton"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="55dp"
         android:onClick="mapsButton"
         android:text="@string/map"
         app:layout_constraintEnd_toEndOf="@+id/greetingsign"
+        app:layout_constraintStart_toEndOf="@+id/settingsbutton"
+        app:layout_constraintBottom_toTopOf="@+id/aboutbutton"
         app:layout_constraintTop_toBottomOf="@+id/calllistbutton" />
 
     <TextView
@@ -41,35 +42,45 @@
 
     <Button
         android:id="@+id/dialbutton"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="55dp"
         android:onClick="dialButton"
         android:text="@string/dial"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/calllistbutton"
         app:layout_constraintStart_toStartOf="@+id/greetingsign"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.382" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/calllistbutton"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="55dp"
         android:onClick="calllistButton"
         android:text="@string/call_list"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/greetingsign"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.382" />
+        app:layout_constraintStart_toEndOf="@+id/dialbutton"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/settingsbutton"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="55dp"
         android:onClick="settingsButton"
         android:text="@string/settings"
         app:layout_constraintEnd_toStartOf="@+id/mapbutton"
+        app:layout_constraintBottom_toTopOf="@+id/downloadbutton"
         app:layout_constraintStart_toStartOf="@+id/greetingsign"
         app:layout_constraintTop_toBottomOf="@+id/dialbutton" />
+
+    <Button
+        android:id="@+id/downloadbutton"
+        android:layout_width="130dp"
+        android:layout_height="55dp"
+        android:onClick="downloadButton"
+        android:text="@string/downloadText"
+        app:layout_constraintEnd_toStartOf="@+id/aboutbutton"
+        app:layout_constraintStart_toStartOf="@+id/greetingsign"
+        app:layout_constraintTop_toBottomOf="@+id/settingsbutton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
