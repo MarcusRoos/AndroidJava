@@ -27,11 +27,13 @@ public class SettingsActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
     }
 
-    public static class SettingsFragment extends PreferenceFragmentCompat {
+    public static class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
             Preference pref = findPreference(getString(R.string.deleteStored));
             pref.setOnPreferenceClickListener(preference -> clickMe());
@@ -43,28 +45,40 @@ public class SettingsActivity extends AppCompatActivity {
             }
 
             ListPreference voicePref = findPreference("voiceList");
-
-            voicePref.setEntries(names); // what is displayed
-            voicePref.setEntryValues(names); // what is stored
             if (voicePref.getSummary() != voicePref.getValue()) {
                 voicePref.setSummary(voicePref.getValue());
             }
+            voicePref.setEntries(names); // what is displayed
+            voicePref.setEntryValues(names); // what is stored
+
         }
+
 
 
         private boolean clickMe() {
             SharedPreferences preferences = this.getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-            ListPreference voicePref = findPreference("voiceList");
-            if (voicePref.getSummary() != voicePref.getValue()) {
-                voicePref.setSummary(voicePref.getValue());
-            }
             preferences.edit().clear().apply();
             return true;
         }
 
 
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            ListPreference voicePref = findPreference("voiceList");
+                voicePref.setSummary(voicePref.getValue());
+        }
 
+        @Override
+        public void onResume() {
+            super.onResume();
+            getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+        }
 
+        @Override
+        public void onPause() {
+            getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+            super.onPause();
+        }
     }
 
 }
