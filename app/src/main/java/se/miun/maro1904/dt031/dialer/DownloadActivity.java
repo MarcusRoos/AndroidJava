@@ -13,6 +13,7 @@ import android.widget.Toast;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -91,55 +92,59 @@ public class DownloadActivity extends AppCompatActivity {
             String fileName = downloader.substring(downloader
                     .lastIndexOf("/") + 1);
             filePath = destination + fileName;
-            URL url;
-            URLConnection urlConnection;
+            URL url = null;
+            URLConnection urlConnection = null;
             InputStream inStream = null;
             FileOutputStream outStream = null;
             try {
                 url = new URL(downloader);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            try {
                 urlConnection = url.openConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
                 inStream = new BufferedInputStream(urlConnection.getInputStream());
-                int content = urlConnection.getContentLength();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            int content = urlConnection.getContentLength();
                 byte[] byteReader = new byte[content];
                 length = 0;
-                int bytesRead;
+                int bytesRead = 0;
                 while (length < content) {
-                    bytesRead = inStream.read(byteReader, length, byteReader.length - length);
+                    try {
+                        bytesRead = inStream.read(byteReader, length, byteReader.length - length);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     length += bytesRead;
                     percentage = length * 100 / content;
                     publishProgress(percentage);
                 }
+            try {
                 outStream = new FileOutputStream(filePath);
-                outStream.write(byteReader);
-                outStream.flush();
-            } catch (MalformedURLException e) {
-                Log.e(TAG, "Failure: "
-                        + e.toString());
+            } catch (FileNotFoundException e) {
                 e.printStackTrace();
-            } catch (IOException e) {
-                Log.e(TAG, "Failure: " + e.toString());
-            } finally {
-                if (inStream != null) {
-                    try {
-                        inStream.close();
-                    } catch (IOException e) {
-                        Log.e(TAG,
-                                "Couldn't close in stream: "
-                                        + e.toString());
-                    }
-                }
-                if (outStream != null) {
-                    try {
-                        outStream.close();
-                    } catch (IOException e) {
-                        Log.e(TAG,
-                                "Couldn't close out stream: "
-                                        + e.toString());
-                    }
-                }
             }
+            try {
+                outStream.write(byteReader);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                outStream.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
             return length;
-        }
+                }
+
 
         @Override
         protected void onProgressUpdate(Integer... progress) {
