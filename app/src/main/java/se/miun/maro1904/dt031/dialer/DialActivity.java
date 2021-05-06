@@ -114,10 +114,16 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
                 myEdit.putString("name", a);
                 myEdit.apply();
             }
-            if (isCallPhonePermissionGranted()) {
+            if (isCallPhonePermissionGranted() && isLocationPhonePermissionGranted()) {
                 calling();
-            } else {
+            } else if (!isCallPhonePermissionGranted()){
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
+            }
+            else if (!isLocationPhonePermissionGranted()) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            }
+            else if (!isCallPhonePermissionGranted() && isLocationPhonePermissionGranted()){
+                calling();
             }
         });
     }
@@ -130,7 +136,7 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
         }
         Uri number = Uri.parse(phoneNumber);
         Intent callIntent;
-        if (isCallPhonePermissionGranted()) {
+        if (isCallPhonePermissionGranted() && isLocationPhonePermissionGranted()) {
             callIntent = new Intent(Intent.ACTION_CALL, number);
         }
         else{
@@ -143,6 +149,11 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
 
     private boolean isCallPhonePermissionGranted() {
         return ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
+                == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private boolean isLocationPhonePermissionGranted() {
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED;
     }
 
