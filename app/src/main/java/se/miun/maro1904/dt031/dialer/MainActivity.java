@@ -1,27 +1,19 @@
 package se.miun.maro1904.dt031.dialer;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
+import androidx.room.Room;
 
-import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.BulletSpan;
 import android.view.View;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
-import java.io.File;
 
 
 public class MainActivity extends AppCompatActivity {
     static final String stateDialog = "dialogState";
     boolean aboutDialog;
-
+    public static CallHistoryDB DATABASE;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
             Util.copyDefaultVoiceToInternalStorage(this);
         }
         setContentView(R.layout.activity_main);
+        DATABASE = Room.databaseBuilder(getApplicationContext(), CallHistoryDB.class, "callHistoryDB")
+                .build();
+
     }
 
 

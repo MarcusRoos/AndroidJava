@@ -108,7 +108,9 @@ public class SoundPlayer {
     }
 
     public void destroy(){
-        soundPool.release();
+        if (soundPool != null) {
+            soundPool.release();
+        }
         soundPool = null;
         instance = null;
     }

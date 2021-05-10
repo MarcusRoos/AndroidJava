@@ -3,13 +3,17 @@ package se.miun.maro1904.dt031.dialer;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,6 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -128,24 +134,7 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    private void calling(){
-        String phoneNumber = "tel:" + clicksTextView.getText().toString();
-        if(phoneNumber.contains("#") || phoneNumber.contains("\u2733")){
-            phoneNumber = phoneNumber.replace("#","%23");
-            phoneNumber = phoneNumber.replace("\u2733","*");
-        }
-        Uri number = Uri.parse(phoneNumber);
-        Intent callIntent;
-        if (isCallPhonePermissionGranted() && isLocationPhonePermissionGranted()) {
-            callIntent = new Intent(Intent.ACTION_CALL, number);
-        }
-        else{
-            callIntent = new Intent(Intent.ACTION_DIAL, number);
-        }
-        callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(callIntent);
 
-    }
 
     private boolean isCallPhonePermissionGranted() {
         return ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
@@ -171,6 +160,43 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    public void calling() {
+        Context context = this;
+        new Thread(() -> {
+
+            CallHistory callHistory = new CallHistory();
+            Date date = Calendar.getInstance().getTime();
+            callHistory.setNumber(clicksTextView.getText().toString());
+            callHistory.setDate(date.toString());
+            callHistory.setLng("Null");
+            callHistory.setLat("Null");
+
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+                if (locationManager != null) {
+                    Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    callHistory.setLat(String.valueOf(location.getLatitude()));
+                    callHistory.setLng(String.valueOf(location.getLongitude()));
+                }
+            }
+            MainActivity.DATABASE.historyDao().insert(callHistory);
+        }) .start();
+
+
+        if (isCallPhonePermissionGranted()) {
+            Intent intent = new Intent(Intent.ACTION_CALL);
+            intent.setData(Uri.parse("tel:" +
+                    clicksTextView.getText()));
+            this.startActivity(intent);
+        }
+        else{
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:" +
+                    clicksTextView.getText()));
+            this.startActivity(intent);
+        }
+    }
+
 
     @Override
     public boolean onLongClick(View v) {
@@ -193,8 +219,8 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
 
     public void tester(String passMe){
         // Don't want to extract this string, solely for testing purposes, will delete at last assignment
-
         Toast toast = Toast.makeText(this,passMe,Toast.LENGTH_SHORT);
         toast.show();
     }
+
 }

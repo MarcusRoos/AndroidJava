@@ -46,6 +46,11 @@
     <string name="soundSummary">Settings sound summary</string>
     <string name="soundTitle">Voice</string>
     <string name="remind_me">Remind me to take a break</string>
+    <string name="callListIfNull">No numbers exist</string>
+    <string name="emptyList">No numbers are stored</string>
+
+
+
 
     <string-array name="default_pref">
         <item>EMPTY</item>
