@@ -11,6 +11,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import java.io.File;
+import java.util.Objects;
 
 public class SettingsActivity extends AppCompatActivity {
     @Override
@@ -56,7 +57,7 @@ public class SettingsActivity extends AppCompatActivity {
 
 
         private boolean clickMe() {
-            SharedPreferences preferences = this.getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+            SharedPreferences preferences = this.requireActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
             preferences.edit().clear().apply();
             return true;
         }

@@ -13,4 +13,7 @@ public interface CallHistoryDAO {
     @Insert
     void insert(CallHistory entity);
 
+    @Query("DELETE FROM CallHistory")
+    public void deleteAll();
+
 }
