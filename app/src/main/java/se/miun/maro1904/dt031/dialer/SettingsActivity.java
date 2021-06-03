@@ -2,13 +2,16 @@ package se.miun.maro1904.dt031.dialer;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.room.RoomDatabase;
 
 import java.io.File;
 import java.util.Objects;
@@ -32,6 +35,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
+
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
 
@@ -59,6 +63,7 @@ public class SettingsActivity extends AppCompatActivity {
         private boolean clickMe() {
             SharedPreferences preferences = this.requireActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
             preferences.edit().clear().apply();
+            AsyncTask.execute(() -> MainActivity.DATABASE.clearAllTables());
             return true;
         }
 
