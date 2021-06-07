@@ -42,12 +42,15 @@ public class MapsActivity extends AppCompatActivity  implements OnMapReadyCallba
 
     private void addMarkers(List<CallHistory> callHistory) {
         for (CallHistory entity : callHistory) {
+            if (!entity.getLat().equals("null") && !entity.getLng().equals("null")) {
                 LatLng loc = new LatLng(Double.parseDouble(entity.getLat()), Double.parseDouble(entity.getLng()));
+
                 mMap.addMarker(new MarkerOptions()
                         .position(loc)
                         .title(entity.getNumber())
                         .snippet(entity.getDate())
                 );
+            }
         }
     }
 }

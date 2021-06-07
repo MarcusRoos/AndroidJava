@@ -168,8 +168,8 @@ public class DialActivity extends AppCompatActivity implements View.OnClickListe
             Date date = Calendar.getInstance().getTime();
             callHistory.setNumber(clicksTextView.getText().toString());
             callHistory.setDate(date.toString());
-            callHistory.setLng("Null");
-            callHistory.setLat("Null");
+            callHistory.setLng("null");
+            callHistory.setLat("null");
 
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);

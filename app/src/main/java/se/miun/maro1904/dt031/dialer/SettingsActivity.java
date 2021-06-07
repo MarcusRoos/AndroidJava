@@ -63,7 +63,8 @@ public class SettingsActivity extends AppCompatActivity {
         private boolean clickMe() {
             SharedPreferences preferences = this.requireActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
             preferences.edit().clear().apply();
-            AsyncTask.execute(() -> MainActivity.DATABASE.clearAllTables());
+
+            // AsyncTask.execute(() -> MainActivity.DATABASE.clearAllTables());
             return true;
         }
 
